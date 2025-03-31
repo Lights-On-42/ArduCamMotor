@@ -272,6 +272,16 @@ void handler(WebsocketsClient &client, WebsocketsMessage message)
 
     Serial.println(data);
     
+    //Serial.println("Stream by WebSocket start");
+    //BildStreamClient=client;
+    //BildStreamClient.send("--frame\r\n");
+    //BildStreamClient.send("Content-Type: image/jpg\r\n\r\n");
+    //myCAM.takePicture(CameraMode,CAM_IMAGE_PIX_FMT_JPG);
+    //streamStart=true;
+    //startMillis=millis();
+    //cameraInstance = myCAM.getCameraInstance();
+
+
     zwComand=data;
     newComand=true;
     client.send("status:" + data);
@@ -290,12 +300,18 @@ void poll_all_clients()
           all_clients.push_back(c);
       }
   }
-  for (auto &client : all_clients)
+  for (auto it = all_clients.begin(); it != all_clients.end();)
   {
-      if(client.poll())
+      if (!it->available())
       {
-        //*lastCommand = zwComand;
-        break;
+        Serial.println("Client disconnected");
+        SetStopped();
+        it = all_clients.erase(it); // Client entfernen
+      }
+      else
+      {
+        it->poll();
+        ++it;
       }
   }
 }

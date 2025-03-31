@@ -23,6 +23,11 @@ const char* htmlPage = R"rawliteral(
   {
     ws.send("PowerON");
   }
+  function sendTestText()
+  {
+    var testTextElement = document.getElementById("TestText").value;
+    ws.send(testTextElement);
+  }
   function connect() 
   {
     let host = window.location.host;
@@ -68,6 +73,10 @@ const char* htmlPage = R"rawliteral(
 			    Speed right:<input id="speedright" type="text" /><br />
 			    Quadrant:<input id="qua" type="text" /><br />
         <br />
+        <br />
+        Test Text :<input id="TestText" type="text" />             <button onclick = "sendTestText()">Send</button>
+        <br />
+        <br />
         <button onclick = "buttonClick()">Stop Stream</button>
         <button onclick = ='/stream'/>Start Stream</button>
         <button id="ConnectButton" onclick = "connect()">connect</button>
@@ -79,13 +88,7 @@ const char* htmlPage = R"rawliteral(
         <button  onclick = "stop()">Stop Motor</button>
         <button  onclick = "PowerDown()">PowerDown</button>
         <button  onclick = "PowerON()">PowerON</button>
-        <br />
-        <br />
-        <!--  <button  onclick = "test()">Test Motor down</button>-->
-        <br />
-        <!--  <button  onclick = "test()">Test Motor Up</button>-->
-        <br />
-        <br />
+
       </div>	
     </div>
 
@@ -156,11 +159,11 @@ const char* htmlPage = R"rawliteral(
       {
         if(leftspeed>0)
         {
-          leftspeed = 1000 - (leftspeed * 8);
+          leftspeed = 1000 - (leftspeed * 4);
         }
         else
         {
-          leftspeed = -(1000 + (leftspeed * 8));      
+          leftspeed = -(1000 + (leftspeed * 4));      
         }
       }  
 
@@ -168,11 +171,11 @@ const char* htmlPage = R"rawliteral(
       {
         if(rightspeed>0)
         {
-          rightspeed = 1000 - (rightspeed * 8);
+          rightspeed = 1000 - (rightspeed * 4);
         }
         else
         {
-          rightspeed = -(1000 + (rightspeed * 8));  
+          rightspeed = -(1000 + (rightspeed * 4));  
         } 
       }
       joy1InputPosX.value=c;

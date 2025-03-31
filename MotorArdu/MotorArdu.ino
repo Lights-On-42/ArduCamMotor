@@ -6,6 +6,7 @@
   ESP8266WebServer server(80);
   const int CS = 16;
 #elif defined(ESP32)
+//esp32S3
   #pragma message "ESP32 stuff happening!"
   #include <WiFi.h>
   #include <WebServer.h>
@@ -71,7 +72,12 @@ void setup()
   //SetIDLE();
 }
 
-
+void testComandoFunktion(String comandotest )
+{
+  zwComand=comandotest;
+  newComand=true;
+  delay(100);
+}
 
 void loop() 
 {

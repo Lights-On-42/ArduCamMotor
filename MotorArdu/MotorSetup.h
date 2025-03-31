@@ -38,6 +38,13 @@ void TaskForMotor( void * parameter )
 
 void MotorSetup()
 {
+  //P4
+  //orderComands.initializePin(5);
+  //orderComands.initializePin(4);
+  //orderComands.initializePin(36);
+  //orderComands.initializePin(32);
+  //orderComands.initializePin(25);
+  
   orderComands.initializeSleepPin(19);
   
   //Motor 1 (1, 4,5,6, 1); 6 OK

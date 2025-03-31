@@ -206,10 +206,11 @@ void Comands::AnalyseOrder(String Order,CommandGCode* com)
   }
   //Serial.print("I received: ");
   
+  
   if(Order.indexOf("testmode") == 0)
   {
     WriteOrder=false;
-    Serial.print("Testmode online");
+    Serial.println("Testmode online");
     testMode=true;
   }
   if(Order.indexOf("testpin") == 0)
